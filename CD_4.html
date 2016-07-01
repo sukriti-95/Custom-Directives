@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Directive Assignment 4</title>
+	<!-- Create custom directive using isolate scope -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript">
+	    var module= angular.module("myapp", []);
+		module.controller("myctrl", function($scope){
+			$scope.name="Sukriti Kakkar";
+			$scope.phone="Samsung Galaxy S3";
+
+		});
+		module.directive("ngHello",function(){
+			return{
+				
+				template: '<div  class="panel-body"> Name: {{name}} <br> Phone: {{phone}} </div>',
+				restrict: 'A',
+				replace: false,
+				scope:'@'
+				
+			}
+		});
+
+</script>
+</head>
+<body>
+<body ng-app="myapp">
+<div  ng-controller="myctrl"  >
+	Name: <input type="text" ng-model="name" >
+	<br>
+	Phone: <input type="text" ng-model="phone">
+	<br>
+	<br>
+	<p> Result from the isolate scope is:</p>
+	<div ng-hello></div>
+</div>
+
+
+</body>
+</html>

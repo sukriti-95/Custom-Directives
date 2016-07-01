@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Directive Assignment 2</title>
+	<!-- Create 3 custom directives for a pop up and restrict the use of that directive as a
+directive, comment, element, attribute. -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript">
+	    var module= angular.module("myapp", []);
+		module.controller("myctrl", function($scope)
+		{
+			$scope.name="Sukriti Kakkar";
+			$scope.phone="Samsung Galaxy S3";
+			$scope.age= 21;
+			$scope.fun= function print()
+			{
+				alert("Pop up");
+				
+			}
+
+
+		});
+		//This directive has restrict of attribute type//
+
+		module.directive("ngHello",function(){
+			return{
+				template: '<div  class="panel-body"> <p> Directive1 output with restrict type A is:</p> {{name}} <button ng-click="fun()"> Click here</button></div>',
+				restrict: 'A',
+				replace: false,
+			}
+		});
+
+		//This directive has restrict of element type//
+			module.directive("ngHello1", function(){
+				return{
+					template: '<div  class="panel-body">  <p> Directive2 output with restrict type E is: </p> {{phone}} <button ng-click="fun()"> Click Me</button></div>',
+					restrict: 'E',
+					replace: false,
+				}
+			});
+
+			module.directive("ngHello2", function(){
+				return{
+					template: '<div  class="panel-body">  <p> Directive3 output with restrict type C is: </p> {{age}} <button ng-click="fun()"> Click Me</button></div>',
+					restrict: 'C',
+					replace: false,
+				}
+			});
+
+			//This directive has restrict of comment type//
+				module.directive("ngHello3", function(){
+				return{
+					template: '<p> This is a comment directive</p>',
+					restrict: 'M',
+					replace: false,
+				}
+
+
+			
+		});
+
+	</script>
+</head>
+<body>
+<body ng-app="myapp">
+<div  ng-controller="myctrl"  >
+	Name: <input type= "text" ng-model="name" >
+	Phone: <input type="text" ng-model="phone">
+	Age: <input type="number" ng-model="age">
+	
+	<div ng-hello></div>
+	<br>
+	<br>
+	<ng-hello1> </ng-hello1>
+	<br> <br>
+	<div class="ng-hello2"></div>
+	
+	<!--  directive: ng-hello3 -->
+	</div>
+
+</body>
+</html>

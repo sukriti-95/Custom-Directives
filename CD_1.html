@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Directive Assignment 1</title>
+	<!-- Create a Custom Directive that should be displayed as it is in a div when we write
+something in an input box. -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript">
+		var module= angular.module("myapp", []);
+		module.controller("myctrl", function($scope){
+			$scope.name="Sukriti Kakkar";
+		});
+		module.directive("ngHello",function(){
+			return{
+				template: '<div  class="panel-body"> {{name}} </div>',
+				restrict: 'A',
+				replace: false,
+			}
+		});
+		</script>
+</head>
+<body ng-app="myapp">
+<div  ng-controller="myctrl"  >
+	Name: <input type="text" ng-model="name" >
+	<br>
+	<p>Output is: </p>
+	<br>
+	<div ng-hello></div>
+</div>
+
+
+</body>
+</html>
